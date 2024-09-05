@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <main>
+
+        <section id="app_url">
+            <fieldset class="field is-grouped" :disabled="connected">
+                <div class="field-label is-normal">
+                    <label class="label">{{'URL'}}</label>
+                </div>
+                <div class="field-body">
+                    <div class="field has-addons">
+                        <p class="control is-expanded has-icons-left">
+                            <input class="input" v-model="url" />
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-link"></i>
+                            </span>
+                        </p>
+                        <div class="control">
+                            <button>{{'接続'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </section>
+
+        <section id="app_chat">
+            <fieldset class="fixed-grid has-2-cols">
+                <div class="grid">
+                    <div class="cell is-col-span-1">
+                        <iframe sandbox="allow-same-origin allow-forms allow-scripts" :src="url"></iframe>
+                    </div>
+                    <div class="cell is-col-span-1">
+
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+
+    </main>
+
+    <script>
+        const { createApp, ref, onMounted, watch } = Vue;
+        const url = ref('https://www.youtube.com/live_chat?is_popout=1&v=SLBWsb6i8xo&embed_domain=localhost');
+
+        createApp({
+            setup() {
+                return {
+                    url
+                };
+            }
+        }).mount('#app_url');
+
+        createApp({
+            setup() {
+                return {
+                    url
+                };
+            }
+        }).mount('#app_chat');
+    </script>
+</body>
+
+</html>
